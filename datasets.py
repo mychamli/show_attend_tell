@@ -21,18 +21,19 @@ class CaptionDataset(Dataset):
         assert self.split in {'TRAIN', 'VAL', 'TEST'}
 
         # Open hdf5 file where images are stored
-        self.h = h5py.File(os.path.join(data_folder, self.split + '_IMAGES_' + data_name + '.hdf5'), 'r')
+        self.h = h5py.File(os.path.join(data_folder, self.split + '_IMAGES' + data_name + '.hdf5'), 'r')
         self.imgs = self.h['images']
 
         # Captions per image
-        self.cpi = self.h.attrs['captions_per_image']
+        #FIXME set to one here . 
+        self.cpi = 1 
 
         # Load encoded captions (completely into memory)
-        with open(os.path.join(data_folder, self.split + '_CAPTIONS_' + data_name + '.json'), 'r') as j:
+        with open(os.path.join(data_folder, self.split + '_CAPTIONS' + data_name + '.json'), 'r') as j:
             self.captions = json.load(j)
 
         # Load caption lengths (completely into memory)
-        with open(os.path.join(data_folder, self.split + '_CAPLENS_' + data_name + '.json'), 'r') as j:
+        with open(os.path.join(data_folder, self.split + '_CAPLENS' + data_name + '.json'), 'r') as j:
             self.caplens = json.load(j)
 
         # PyTorch transformation pipeline for the image (normalizing, etc.)
