@@ -1,0 +1,13 @@
+name: show_attend_tell
+channels:
+  - defaults
+dependencies:
+- python=3.6
+- pip>=21
+- pip:
+   - nltk
+   - regex
+   - tqdm
+   - h5py 
+   - numpy
+   - scipy 
